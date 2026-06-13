@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+.venv/
+.env
+*.csv
+node_modules/
+.next/
+fastf1_cache/
+cache/
+.streamlit/secrets.toml
