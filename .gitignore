@@ -10,3 +10,6 @@ node_modules/
 fastf1_cache/
 cache/
 .streamlit/secrets.toml
+# APEX intermediate data
+data/parquet/
+*.parquet
