@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ *
+ * APEX design system — "pit wall"
+ * Carbon canvas, one F1 red for the brand + racing line, constructor
+ * colours only where they encode data, mono for every measured number.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-carbon: #0a0a0b;      /* base canvas            */
+  --color-panel: #0f1013;       /* raised surfaces        */
+  --color-panel2: #141519;      /* nested surfaces        */
+  --color-hairline: #23262c;    /* borders / grid         */
+  --color-hairline2: #2f333b;   /* brighter hairline      */
+  --color-f1red: #e10600;       /* brand + racing line    */
+  --color-paper: #f2f3f5;       /* primary text           */
+  --color-mute: #8b9099;        /* secondary text         */
+  --color-mute2: #5b6069;       /* tertiary / axis        */
+  --color-purple: #b14bf4;      /* timing: overall fastest */
+  --color-green: #1fd65f;       /* timing: personal best   */
+  --color-yellow: #f5c518;      /* timing: slower / caution*/
+  --color-cyan: #27f4d2;        /* overperformance         */
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-carbon);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-carbon);
+  color: var(--color-paper);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numbers, eyebrows, coordinates — the timing-tower voice. */
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Uppercase, wide-tracked mono label used for section markers. */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.625rem;
+  color: var(--color-mute);
+}
+
+/* Forward italic slant echoing the F1 speed motif — wordmark + markers. */
+.slant {
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+/* Faint carbon grid, like a pit-wall screen background. */
+.gridbg {
+  background-image:
+    linear-gradient(to right, rgba(35, 38, 44, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(35, 38, 44, 0.35) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* A thin racing-line sheen used sparingly on active elements. */
+.redline {
+  box-shadow: inset 0 -2px 0 0 var(--color-f1red);
+}
+
+::selection {
+  background: rgba(225, 6, 0, 0.28);
+  color: #fff;
+}
+
+/* Slim carbon scrollbars. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline2) transparent;
+}
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-hairline2);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes apex-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.live-dot { animation: apex-pulse 1.8s ease-in-out infinite; }
+
+@keyframes apex-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: apex-fade 0.4s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot, .fade-in { animation: none; }
 }
