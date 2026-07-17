@@ -19,10 +19,11 @@
   --color-green: #1fd65f;       /* timing: personal best   */
   --color-yellow: #f5c518;      /* timing: slower / caution*/
   --color-cyan: #27f4d2;        /* overperformance         */
-
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
 }
+
+/* Fonts arrive as CSS variables from next/font, set on <html>:
+ *   --font-sans  (Inter)          --font-mono  (JetBrains Mono)
+ * body and .mono reference them directly below. */
 
 html {
   background: var(--color-carbon);
