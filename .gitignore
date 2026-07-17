@@ -13,3 +13,5 @@ cache/
 # APEX intermediate data
 data/parquet/
 *.parquet
+# Playwright MCP session artifacts (may contain sensitive downloads)
+.playwright-mcp/
