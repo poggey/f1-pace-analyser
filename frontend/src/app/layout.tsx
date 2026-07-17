@@ -32,7 +32,15 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <script
+          src="https://cdn.jsdelivr.net/gh/poggey/built-by@main/built-by.js"
+          data-name="Padraig Middleton"
+          data-github="https://github.com/poggey"
+          defer
+        ></script>
+      </body>
     </html>
   );
 }
